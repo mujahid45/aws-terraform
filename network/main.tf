@@ -1,7 +1,4 @@
-provider "aws" {
-  profile    = "${var.profile-name}"
-  region     = "${var.aws-region}"
-}
+
 data "aws_availability_zones" "available" {}
 resource "aws_vpc" "dev_vpc" {
   cidr_block       = "${var.vpc_cidr}"
