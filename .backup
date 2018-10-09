@@ -1,0 +1,144 @@
+{
+    "version": 3,
+    "terraform_version": "0.11.5",
+    "serial": 2,
+    "lineage": "995bda7d-abd1-e37b-0166-518a98fccff1",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {
+                "aws_internet_gateway.gw": {
+                    "type": "aws_internet_gateway",
+                    "depends_on": [
+                        "aws_vpc.dev_vpc"
+                    ],
+                    "primary": {
+                        "id": "igw-051ec469d4682993a",
+                        "attributes": {
+                            "id": "igw-051ec469d4682993a",
+                            "tags.%": "1",
+                            "tags.Name": "dev-igw",
+                            "vpc_id": "vpc-003333295123a15f7"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_route_table.public-route": {
+                    "type": "aws_route_table",
+                    "depends_on": [
+                        "aws_internet_gateway.gw",
+                        "aws_vpc.dev_vpc"
+                    ],
+                    "primary": {
+                        "id": "rtb-021adbe4fa3a36c7e",
+                        "attributes": {
+                            "id": "rtb-021adbe4fa3a36c7e",
+                            "propagating_vgws.#": "0",
+                            "route.#": "1",
+                            "route.1722620761.cidr_block": "0.0.0.0/0",
+                            "route.1722620761.egress_only_gateway_id": "",
+                            "route.1722620761.gateway_id": "igw-051ec469d4682993a",
+                            "route.1722620761.instance_id": "",
+                            "route.1722620761.ipv6_cidr_block": "",
+                            "route.1722620761.nat_gateway_id": "",
+                            "route.1722620761.network_interface_id": "",
+                            "route.1722620761.vpc_peering_connection_id": "",
+                            "tags.%": "1",
+                            "tags.Name": "public-route",
+                            "vpc_id": "vpc-003333295123a15f7"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_route_table_association.public-route": {
+                    "type": "aws_route_table_association",
+                    "depends_on": [
+                        "aws_route_table.public-route",
+                        "aws_subnet.public-subnet"
+                    ],
+                    "primary": {
+                        "id": "rtbassoc-0d9a6b722c1c30d8b",
+                        "attributes": {
+                            "id": "rtbassoc-0d9a6b722c1c30d8b",
+                            "route_table_id": "rtb-021adbe4fa3a36c7e",
+                            "subnet_id": "subnet-0ba560a9ed1b3c1e4"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_subnet.public-subnet": {
+                    "type": "aws_subnet",
+                    "depends_on": [
+                        "aws_vpc.dev_vpc"
+                    ],
+                    "primary": {
+                        "id": "subnet-0ba560a9ed1b3c1e4",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:ap-south-1:491522414914:subnet/subnet-0ba560a9ed1b3c1e4",
+                            "assign_ipv6_address_on_creation": "false",
+                            "availability_zone": "ap-south-1b",
+                            "cidr_block": "10.0.1.0/24",
+                            "id": "subnet-0ba560a9ed1b3c1e4",
+                            "map_public_ip_on_launch": "false",
+                            "tags.%": "1",
+                            "tags.Name": "public-cidr",
+                            "vpc_id": "vpc-003333295123a15f7"
+                        },
+                        "meta": {
+                            "e2bfb730-ecaa-11e6-8f88-34363bc7c4c0": {
+                                "create": 600000000000,
+                                "delete": 600000000000
+                            },
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "aws_vpc.dev_vpc": {
+                    "type": "aws_vpc",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "vpc-003333295123a15f7",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:ap-south-1:491522414914:vpc/vpc-003333295123a15f7",
+                            "assign_generated_ipv6_cidr_block": "false",
+                            "cidr_block": "10.0.0.0/16",
+                            "default_network_acl_id": "acl-0a92517264325c256",
+                            "default_route_table_id": "rtb-0e60a2f6140d4763d",
+                            "default_security_group_id": "sg-01c32b1947989ccfa",
+                            "dhcp_options_id": "dopt-54ad9a3c",
+                            "enable_dns_hostnames": "false",
+                            "enable_dns_support": "true",
+                            "id": "vpc-003333295123a15f7",
+                            "instance_tenancy": "default",
+                            "main_route_table_id": "rtb-0e60a2f6140d4763d",
+                            "tags.%": "1",
+                            "tags.Name": "main"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
