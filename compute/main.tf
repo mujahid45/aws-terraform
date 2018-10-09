@@ -11,7 +11,7 @@ resource "aws_key_pair" "dev-key" {
   public_key = "${file(var.key-path)}"
 }
 resource "aws_instance" "web" {
-  ami           = "${data.aws_ami_ids.ubuntu.id}"
+  ami           = "ami-0e6d2e8684d4ccb3e"
   instance_type = "${var.instance_type}"
   associate_public_ip_address =true
   
