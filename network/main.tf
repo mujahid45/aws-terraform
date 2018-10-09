@@ -31,7 +31,7 @@ resource "aws_subnet" "public-subnet" {
   vpc_id     = "${aws_vpc.dev_vpc.id}"
   cidr_block = "${var.public_cidr}"
   map_public_ip_on_launch = true
-  avilability_zone = data.aws_availability_zone.avilable.name[0]
+ 
   tags {
     Name = "public-cidr"
   }
@@ -49,9 +49,16 @@ resource "aws_security_group" "dev-sec" {
   ingress {
     from_port   = 80
     to_port     = 80
-    protocol    = "http"
+    protocol    = "tcp"
     cidr_blocks = ["${var.my-ip}"]
   }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.my-ip}"]
+  }
+
 
   egress {
     from_port       = 0

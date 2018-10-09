@@ -5,18 +5,18 @@ provider "aws" {
 module "networking"
 {
     source = "./network"
-    vpc_cidr      = "${var.vpc_cidr}
+    vpc_cidr      = "${var.vpc_cidr}"
     public_cidr   = "${var.public_cidr}"
     my-ip         =  "${var.my-ip}"
 }
 module "compute"
 {
-    source "./compute"
+    source = "./compute"
     key = "${var.key}"
     key-path="${var.key-path}"
     instance_type ="${var.instance_type}"
-    vpc = ${module.networking.vpc.id}
-    subnet = "${module.networkingsubnet.id}""
-    sg = "${module.networking.sg.id}"
+    vpc = "${module.networking.vpc}"
+    subnet = "${module.networking.subnet}"
+    security_group = "${module.networking.sg}"
 }
 

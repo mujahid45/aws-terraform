@@ -1,0 +1,1 @@
+{"Modules":[{"Source":"./network","Key":"1.networking;./network","Version":"","Dir":".terraform/modules/432a9a14098fdbb0335c42063aef187e","Root":""},{"Source":"./compute","Key":"1.compute;./compute","Version":"","Dir":".terraform/modules/4bd37022538880c929d86799f72c24ae","Root":""}]}
