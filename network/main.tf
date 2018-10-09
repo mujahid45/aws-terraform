@@ -2,6 +2,7 @@ provider "aws" {
   profile    = "${var.profile-name}"
   region     = "${var.aws-region}"
 }
+data "aws_availability_zones" "available" {}
 resource "aws_vpc" "dev_vpc" {
   cidr_block       = "${var.vpc_cidr}"
 
@@ -32,7 +33,8 @@ resource "aws_route_table" "public-route" {
 resource "aws_subnet" "public-subnet" {
   vpc_id     = "${aws_vpc.dev_vpc.id}"
   cidr_block = "${var.public_cidr}"
-
+  map_public_ip_on_launch = true
+  avilability_zone = data.aws_availability_zone.avilable.name[0]
   tags {
     Name = "public-cidr"
   }
