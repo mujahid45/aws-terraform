@@ -10,4 +10,12 @@ resource "aws_key_pair" "dev-key" {
   key_name   = "dev-key"
   public_key = "$file(/home/ec2-user)"
 }
-resource "aws_"
+resource "aws_instance" "web" {
+  ami           = "${data.aws_ami.ubuntu.id}"
+  instance_type = "${var.instance_type}"
+  
+
+  tags {
+    Name = "dev-instance"
+  }
+}
