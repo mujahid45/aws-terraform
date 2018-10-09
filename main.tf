@@ -3,7 +3,7 @@ provider "aws" {
   region     = "${var.aws-region}"
 }
 resource "aws_vpc" "dev_vpc" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = $"var.vpc_cidr"
 
   tags {
     Name = "main"
@@ -28,4 +28,17 @@ resource "aws_route_table" "public-route" {
   tags {
     Name = "public-route"
   }
+}
+resource "aws_subnet" "public-subnet" {
+  vpc_id     = "${aws_vpc.main.id}"
+  cidr_block = "${var.public_cidr}"
+
+  tags {
+    Name = "public-cidr"
+  }
+}
+
+resource "aws_route_table_association" "public-route" {
+  subnet_id      = "${aws_subnet.public-subnet.id}"
+  route_table_id = "${aws_route_table.public-route.id}"
 }
