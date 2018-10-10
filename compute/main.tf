@@ -8,7 +8,7 @@ data "aws_ami_ids" "ubuntu" {
 }
 resource "aws_key_pair" "dev-key" {
   key_name   = "${var.key}"
-  public_key = "${file(var.key-path)}"
+  public_key = "sample"
 }
 resource "aws_instance" "web" {
   ami           = "ami-0e6d2e8684d4ccb3e"
