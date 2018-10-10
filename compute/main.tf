@@ -21,5 +21,17 @@ resource "aws_instance" "web" {
     Name = "dev-instance"
   }
   vpc_security_group_ids = ["${var.security_group}"]
-  key_name = "sample"
+  key_name = "Eswari"
+  provisioner "remote-exec" {
+    inline = [
+      "sudo -S apt-get update",
+      "sudo apt-get install -y python-minimal"
+    ]
+    connection {
+      type        = "ssh"
+      agent       = false
+      private_key = "${file("/home/ec2-user/Eswari.pem")}"
+      user        = "ec2-user"
+    }  
+  }
 }
