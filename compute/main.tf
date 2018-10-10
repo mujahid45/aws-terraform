@@ -21,5 +21,5 @@ resource "aws_instance" "web" {
     Name = "dev-instance"
   }
   vpc_security_group_ids = ["${var.security_group}"]
-  key_name = "test1"
+  key_name = "sample"
 }
