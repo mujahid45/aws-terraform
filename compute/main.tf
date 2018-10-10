@@ -1,4 +1,4 @@
-data "aws_ami_ids" "ubuntu" {
+/*data "aws_ami_ids" "ubuntu" {
   owners = ["099720109477"]
 
   filter {
@@ -9,7 +9,7 @@ data "aws_ami_ids" "ubuntu" {
 resource "aws_key_pair" "dev-key" {
   key_name   = "${var.key}"
   public_key = "sample"
-}
+}*/
 resource "aws_instance" "web" {
   ami           = "ami-0e6d2e8684d4ccb3e"
   instance_type = "${var.instance_type}"
