@@ -5,13 +5,13 @@
     name   = "name"
     values = ["ubuntu/images/ubuntu-*-*-amd64-server-*"]
   }
-}
-resource "aws_key_pair" "dev-key" {
-  key_name   = "${var.key}"
-  public_key = "sample"
 }*/
+
+
+
+
 resource "aws_instance" "web" {
-  ami           = "ami-0e6d2e8684d4ccb3e"
+  ami           = "ami-0912f71e06545ad88"
   instance_type = "${var.instance_type}"
   associate_public_ip_address =true
   
@@ -21,16 +21,16 @@ resource "aws_instance" "web" {
     Name = "dev-instance"
   }
   vpc_security_group_ids = ["${var.security_group}"]
-  key_name = "Eswari"
+  key_name = "vpc"
   provisioner "remote-exec" {
     inline = [
-      "sudo -S apt-get update",
-      "sudo apt-get install -y python-minimal"
+      "sudo  yum update",
+      "sudo apt-get install -y httpd"
     ]
     connection {
       type        = "ssh"
       agent       = false
-      private_key = "${file("/home/ec2-user/Eswari.pem")}"
+      private_key = "${file("/home/ec2-user/Eswari.pub")}"
       user        = "ec2-user"
     }  
   }
