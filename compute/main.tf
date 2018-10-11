@@ -1,4 +1,6 @@
-/*data "aws_ami_ids" "ubuntu" {
+/*
+
+data "aws_ami_ids" "ubuntu" {
   owners = ["099720109477"]
 
   filter {
@@ -10,12 +12,12 @@
 
 resource "aws_key_pair" "tf_auth" {
   key_name   = "${var.key}"
-  public_key = "${file(var.key_path)}"
+  public_key = "${file(var.key-path)}"
 }
 
 
 resource "aws_instance" "web" {
-  ami           = "ami-0912f71e06545ad88"
+  ami           = "ami-0922553b7b0369273"
   instance_type = "${var.instance_type}"
   associate_public_ip_address =true
   
@@ -28,13 +30,12 @@ resource "aws_instance" "web" {
   key_name = "vpc"
   provisioner "remote-exec" {
     inline = [
-      "sudo  yum update",
-      "sudo apt-get install -y httpd"
+      "sudo  yum -y update",
+      "sudo yum install -y httpd"
     ]
     connection {
-      type        = "ssh"
-      agent       = false
-      private_key = "${file("//home/ec2-user/vpc.pub")}"
+      #type        = "ssh"
+      #agent       = false
       user        = "ec2-user"
     }  
   }
