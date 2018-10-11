@@ -1,0 +1,8 @@
+ profile-name  = "vpc"
+ aws-region    = "us-east-1"
+instance_type = "t2.micro"
+key           = "vpc"
+key-path      = "/home/ec2-user/environment/aws-terraform/vpc.pub"
+my-ip         = "0.0.0.0/0"
+public_cidr   = "10.1.0.0/24"
+vpc_cidr      = "10.0.0.0/16"
