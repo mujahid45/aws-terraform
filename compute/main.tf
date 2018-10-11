@@ -10,7 +10,7 @@ data "aws_ami_ids" "ubuntu" {
 }*/
 data "template_file" "user_data" {
   
-  template = "${file("${path.module}/userdata.tpl")}"
+  template = "${file("${path.module}/user-data.tpl")}"
 
 }
 
