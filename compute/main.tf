@@ -28,15 +28,5 @@ resource "aws_instance" "web" {
   }
   vpc_security_group_ids = ["${var.security_group}"]
   key_name = "vpc"
-  provisioner "remote-exec" {
-    inline = [
-      "sudo  yum -y update",
-      "sudo yum install -y httpd"
-    ]
-    connection {
-      #type        = "ssh"
-      #agent       = false
-      user        = "ec2-user"
-    }  
-  }
+  user_data = "${template_file.user_data.rendered}"
 }
