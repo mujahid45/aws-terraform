@@ -8,7 +8,11 @@ data "aws_ami_ids" "ubuntu" {
     values = ["ubuntu/images/ubuntu-*-*-amd64-server-*"]
   }
 }*/
+data "template_file" "user_data" {
+  
+  template = "${file("${path.module}/userdata.tpl")}"
 
+}
 
 resource "aws_key_pair" "tf_auth" {
   key_name   = "${var.key}"
