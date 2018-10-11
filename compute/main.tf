@@ -8,6 +8,10 @@
 }*/
 
 
+resource "aws_key_pair" "tf_auth" {
+  key_name   = "${var.key}"
+  public_key = "${file(var.key_path)}"
+}
 
 
 resource "aws_instance" "web" {
@@ -30,7 +34,7 @@ resource "aws_instance" "web" {
     connection {
       type        = "ssh"
       agent       = false
-      private_key = "${file("/home/ec2-user/Eswari.pub")}"
+      private_key = "${file("//home/ec2-user/vpc.pub")}"
       user        = "ec2-user"
     }  
   }
