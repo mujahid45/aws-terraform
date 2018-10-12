@@ -10,7 +10,7 @@ data "aws_ami_ids" "ubuntu" {
 }*/
 data "template_file" "user_data" {
   
-  template = "${file("${path.module}/user-data.tpl")}"
+  template = "${file("${path.module}/userdata.sh")}"
 
 }
 
@@ -31,6 +31,6 @@ resource "aws_instance" "web" {
     Name = "dev-instance"
   }
   vpc_security_group_ids = ["${var.security_group}"]
-  key_name = "vpc"
-  user_data = "${template_file.user_data.rendered}"
+  key_name = "terraansi"
+  user_data = "${file("${path.module}/user-data.tpl")}"
 }
